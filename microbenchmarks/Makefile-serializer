@@ -1,0 +1,36 @@
+CURRENT_DIR = $(shell pwd)
+
+X86INSTALLDIR=protobuf-x86-install
+RISCVINSTALLDIR=protobuf-riscv-install
+
+HOST_GCC_INSTALL=host-gcc-install/
+
+PROTOC = $(X86INSTALLDIR)/bin/protoc
+RVCPP = riscv64-unknown-linux-gnu-g++
+RVSTRIP = riscv64-unknown-linux-gnu-strip
+X86CPP = $(HOST_GCC_INSTALL)/bin/g++
+X86STRIP = strip
+CPPFLAGS = -std=c++11 -O3 -g3 -static -D NDEBUG
+
+include testsfrag-serializer.mk
+
+ACCELCPP = accellib.cpp
+ACCELH = rocc.h accellib.h
+
+all: $(rvtests) $(x86tests)
+
+%.pb.cc %.pb.h: %.proto
+	LD_LIBRARY_PATH=$(HOST_GCC_INSTALL)/lib64:$$LD_LIBRARY_PATH && $(PROTOC) --proto_path=$(@D) --cpp_out=. $<
+	mv *.pb.h $(@D)/
+	mv *.pb.cc $(@D)/
+
+%.riscv: %.cpp $(protos) $(ACCELCPP) $(ACCELH)
+	$(RVCPP) $(CPPFLAGS) $< $(protocc) $(ACCELCPP) -I $(RISCVINSTALLDIR)/include -pthread $(RISCVINSTALLDIR)/lib/libprotobuf.a -o $@
+	$(RVSTRIP) $@
+
+%.x86 : %.cpp $(protos)
+	$(X86CPP) $(CPPFLAGS) $< $(protocc) -I $(X86INSTALLDIR)/include -pthread $(X86INSTALLDIR)/lib/libprotobuf.a -o $@
+	$(X86STRIP) $@
+
+.PRECIOUS: %.pb.cc %.pb.h
+

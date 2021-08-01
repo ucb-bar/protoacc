@@ -1,0 +1,33 @@
+{
+  "name" : "boom-plain-bmarks",
+  "base" : "br-base.json",
+  "workdir" : ".",
+  "overlay" : "overlay",
+  "linux-src" : "../linux",
+  "jobs" : [
+    {
+      "name" : "bench0",
+      "run" : "overlay/root/bmarks/run-bench0"
+    },
+    {
+      "name" : "bench1",
+      "run" : "overlay/root/bmarks/run-bench1"
+    },
+    {
+      "name" : "bench2",
+      "run" : "overlay/root/bmarks/run-bench2"
+    },
+    {
+      "name" : "bench3",
+      "run" : "overlay/root/bmarks/run-bench3"
+    },
+    {
+      "name" : "bench4",
+      "run" : "overlay/root/bmarks/run-bench4"
+    },
+    {
+      "name" : "bench5",
+      "run" : "overlay/root/bmarks/run-bench5"
+    }
+  ]
+}

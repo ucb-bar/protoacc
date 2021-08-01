@@ -1,0 +1,43 @@
+{
+  "name" : "protoacc-ser-bmarks",
+  "base" : "br-base.json",
+  "workdir" : ".",
+  "overlay" : "overlay",
+  "linux-src" : "../linux",
+  "jobs" : [
+    {
+      "name" : "bench0-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench0"
+    },
+    {
+      "name" : "bench1-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench1"
+    },
+    {
+      "name" : "bench2-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench2"
+    },
+    {
+      "name" : "bench3-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench3"
+    },
+    {
+      "name" : "bench4-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench4"
+    },
+    {
+      "name" : "bench5-ser",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench5"
+    },
+    {
+      "name" : "ubmarks-ser",
+      "run" : "overlay/root/ubmarks/top-run.sh"
+    }
+  ]
+}

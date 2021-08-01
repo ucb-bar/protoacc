@@ -1,0 +1,43 @@
+{
+  "name" : "protoacc-des-bmarks",
+  "base" : "br-base.json",
+  "workdir" : ".",
+  "overlay" : "overlay",
+  "linux-src" : "../linux",
+  "jobs" : [
+    {
+      "name" : "bench0-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench0"
+    },
+    {
+      "name" : "bench1-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench1"
+    },
+    {
+      "name" : "bench2-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench2"
+    },
+    {
+      "name" : "bench3-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench3"
+    },
+    {
+      "name" : "bench4-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench4"
+    },
+    {
+      "name" : "bench5-des",
+      "outputs" : [ "/root/outputdata" ],
+      "run" : "overlay/root/bmarks/run-bench5"
+    },
+    {
+      "name" : "ubmarks-des",
+      "run" : "overlay/root/ubmarks/top-run.sh"
+    }
+  ]
+}

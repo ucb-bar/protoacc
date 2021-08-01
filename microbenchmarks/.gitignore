@@ -1,0 +1,13 @@
+protobuf-riscv-install/
+protobuf-x86-install/
+primitive-tests/
+primitive-tests/
+primitive-tests-serializer/
+primitive-tests-serializer/
+host-gcc-install/
+host-gcc-build/gcc-9.2.0-build/
+host-gcc-build/gcc-9.2.0.tar.gz
+host-gcc-build/gcc-9.2.0/
+runlogs/
+testsfrag.mk
+testsfrag-serializer.mk
