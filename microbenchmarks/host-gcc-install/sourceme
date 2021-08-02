@@ -1,0 +1,6 @@
+
+
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+export PATH=$MYDIR/bin:$PATH
+export LD_LIBRARY_PATH=$MYDIR/lib64:$LD_LIBRARY_PATH
