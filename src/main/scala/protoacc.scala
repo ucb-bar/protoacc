@@ -85,7 +85,7 @@ with MemoryOpConstants {
 }
 
 class WithProtoAccel extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
   case BuildRoCC => Seq(
     (p: Parameters) => {
       val protoacc = LazyModule.apply(new ProtoAccel(OpcodeSet.custom2)(p))
@@ -99,7 +99,7 @@ class WithProtoAccel extends Config ((site, here, up) => {
 })
 
 class WithProtoAccelSerOnly extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
   case BuildRoCC => Seq(
     (p: Parameters) => {
       val protoaccser = LazyModule.apply(new ProtoAccelSerializer(OpcodeSet.custom3)(p))
@@ -109,7 +109,7 @@ class WithProtoAccelSerOnly extends Config ((site, here, up) => {
 })
 
 class WithProtoAccelDeserOnly extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
   case BuildRoCC => Seq(
     (p: Parameters) => {
       val protoacc = LazyModule.apply(new ProtoAccel(OpcodeSet.custom2)(p))
