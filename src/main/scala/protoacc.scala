@@ -3,7 +3,7 @@ package protoacc
 import Chisel._
 import chisel3.{Printable}
 import freechips.rocketchip.tile._
-import freechips.rocketchip.config._
+import org.chipsalliance.cde.config._
 import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.rocket.{TLBConfig, HellaCacheArbiter}
 import freechips.rocketchip.util.DecoupledHelper
@@ -85,8 +85,8 @@ with MemoryOpConstants {
 }
 
 class WithProtoAccel extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
-  case BuildRoCC => Seq(
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
+  case BuildRoCC => up(BuildRoCC) ++ Seq(
     (p: Parameters) => {
       val protoacc = LazyModule.apply(new ProtoAccel(OpcodeSet.custom2)(p))
       protoacc
@@ -99,8 +99,8 @@ class WithProtoAccel extends Config ((site, here, up) => {
 })
 
 class WithProtoAccelSerOnly extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
-  case BuildRoCC => Seq(
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
+  case BuildRoCC => up(BuildRoCC) ++ Seq(
     (p: Parameters) => {
       val protoaccser = LazyModule.apply(new ProtoAccelSerializer(OpcodeSet.custom3)(p))
       protoaccser
@@ -109,8 +109,8 @@ class WithProtoAccelSerOnly extends Config ((site, here, up) => {
 })
 
 class WithProtoAccelDeserOnly extends Config ((site, here, up) => {
-  case ProtoTLB => Some(TLBConfig(nEntries = 16))
-  case BuildRoCC => Seq(
+  case ProtoTLB => Some(TLBConfig(nSets = 4, nWays = 4, nSectors = 1, nSuperpageEntries = 1))
+  case BuildRoCC => up(BuildRoCC) ++ Seq(
     (p: Parameters) => {
       val protoacc = LazyModule.apply(new ProtoAccel(OpcodeSet.custom2)(p))
       protoacc
