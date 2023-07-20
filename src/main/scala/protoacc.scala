@@ -15,14 +15,19 @@ case object ProtoAccelPrintfEnable extends Field[Boolean](false)
 class ProtoAccel(opcodes: OpcodeSet)(implicit p: Parameters) extends LazyRoCC(
     opcodes = opcodes, nPTWPorts = 4) {
   override lazy val module = new ProtoAccelImp(this)
+
+  val tapeout = true
+  val roccTLNode = if (tapeout) atlNode else tlNode
+
+
   val mem_descr = LazyModule(new L1MemHelper("[m_descr]", numOutstandingReqs=4))
-  tlNode := mem_descr.masterNode
+  roccTLNode := TLBuffer.chainNode(1) := mem_descr.masterNode
   val mem_memloader = LazyModule(new L1MemHelper("[m_memloader]", numOutstandingReqs=64, queueResponses=true))
-  tlNode := mem_memloader.masterNode
+  roccTLNode := TLBuffer.chainNode(1) := mem_memloader.masterNode
   val mem_hasbits = LazyModule(new L1MemHelper(printInfo="[m_hasbits]", queueRequests=true))
-  tlNode := mem_hasbits.masterNode
+  roccTLNode := TLBuffer.chainNode(1) := mem_hasbits.masterNode
   val mem_fixedwriter = LazyModule(new L1MemHelperWriteFast(printInfo="[m_fixedwriter]", queueRequests=true))
-  tlNode := mem_fixedwriter.masterNode
+  roccTLNode := TLBuffer.chainNode(1) := mem_fixedwriter.masterNode
 }
 
 

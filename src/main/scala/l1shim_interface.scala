@@ -35,7 +35,7 @@ class L1MemHelperBundle extends Bundle {
 }
 
 
-class L1MemHelper(printInfo: String = "", numOutstandingReqs: Int = 32, queueRequests: Boolean = false, queueResponses: Boolean = false)(implicit p: Parameters) extends LazyModule {
+class L1MemHelper(printInfo: String = "", numOutstandingReqs: Int = 32, queueRequests: Boolean = true, queueResponses: Boolean = true)(implicit p: Parameters) extends LazyModule {
   val numOutstandingRequestsAllowed = numOutstandingReqs
   val tlTagBits = log2Ceil(numOutstandingRequestsAllowed)
 
@@ -47,7 +47,7 @@ class L1MemHelper(printInfo: String = "", numOutstandingReqs: Int = 32, queueReq
   )))
 }
 
-class L1MemHelperModule(outer: L1MemHelper, printInfo: String = "", queueRequests: Boolean = false, queueResponses: Boolean = false)(implicit p: Parameters) extends LazyModuleImp(outer)
+class L1MemHelperModule(outer: L1MemHelper, printInfo: String = "", queueRequests: Boolean = true, queueResponses: Boolean = true)(implicit p: Parameters) extends LazyModuleImp(outer)
   with HasCoreParameters
   with MemoryOpConstants {
 

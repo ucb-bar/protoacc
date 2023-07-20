@@ -11,7 +11,7 @@ import freechips.rocketchip.rocket.constants.MemoryOpConstants
 import freechips.rocketchip.rocket.{RAS}
 import freechips.rocketchip.tilelink._
 
-class L1MemHelperWriteFast(printInfo: String = "", numOutstandingReqs: Int = 64, queueRequests: Boolean = false)(implicit p: Parameters) extends LazyModule {
+class L1MemHelperWriteFast(printInfo: String = "", numOutstandingReqs: Int = 64, queueRequests: Boolean = true)(implicit p: Parameters) extends LazyModule {
   val numOutstandingRequestsAllowed = numOutstandingReqs
   val tlTagBits = log2Ceil(numOutstandingRequestsAllowed)
 
@@ -22,7 +22,7 @@ class L1MemHelperWriteFast(printInfo: String = "", numOutstandingReqs: Int = 64,
   )))
 }
 
-class L1MemHelperWriteFastModule(outer: L1MemHelperWriteFast, printInfo: String = "", queueRequests: Boolean = false)(implicit p: Parameters) extends LazyModuleImp(outer)
+class L1MemHelperWriteFastModule(outer: L1MemHelperWriteFast, printInfo: String = "", queueRequests: Boolean = true)(implicit p: Parameters) extends LazyModuleImp(outer)
   with HasCoreParameters
   with MemoryOpConstants {
 
