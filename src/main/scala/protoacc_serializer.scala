@@ -20,25 +20,25 @@ class ProtoAccelSerializer(opcodes: OpcodeSet)(implicit p: Parameters) extends L
 
 
   val mem_descr1 = LazyModule(new L1MemHelper(printInfo="[m_serdescr1]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_descr1.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_descr1.masterNode
   val mem_descr2 = LazyModule(new L1MemHelper(printInfo="[m_serdescr2]", queueRequests=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_descr2.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_descr2.masterNode
 
   val mem_serfieldhandler1 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler1]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler1.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler1.masterNode
   val mem_serfieldhandler2 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler2]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler2.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler2.masterNode
   val mem_serfieldhandler3 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler3]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler3.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler3.masterNode
   val mem_serfieldhandler4 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler4]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler4.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler4.masterNode
   val mem_serfieldhandler5 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler5]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler5.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler5.masterNode
   val mem_serfieldhandler6 = LazyModule(new L1MemHelper(printInfo="[m_serfieldhandler6]", queueRequests=true, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serfieldhandler6.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serfieldhandler6.masterNode
 
   val mem_serwriter = LazyModule(new L1MemHelperWriteFast(printInfo="[m_serwriter]", queueRequests=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_serwriter.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_serwriter.masterNode
 }
 
 class ProtoAccelSerializerImp(outer: ProtoAccelSerializer)(implicit p: Parameters) extends LazyRoCCModuleImp(outer)

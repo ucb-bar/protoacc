@@ -21,13 +21,13 @@ class ProtoAccel(opcodes: OpcodeSet)(implicit p: Parameters) extends LazyRoCC(
 
 
   val mem_descr = LazyModule(new L1MemHelper("[m_descr]", numOutstandingReqs=4))
-  roccTLNode := TLBuffer.chainNode(1) := mem_descr.masterNode
+  roccTLNode := TLWidthWidget(16):= TLBuffer.chainNode(1) := mem_descr.masterNode
   val mem_memloader = LazyModule(new L1MemHelper("[m_memloader]", numOutstandingReqs=64, queueResponses=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_memloader.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_memloader.masterNode
   val mem_hasbits = LazyModule(new L1MemHelper(printInfo="[m_hasbits]", queueRequests=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_hasbits.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_hasbits.masterNode
   val mem_fixedwriter = LazyModule(new L1MemHelperWriteFast(printInfo="[m_fixedwriter]", queueRequests=true))
-  roccTLNode := TLBuffer.chainNode(1) := mem_fixedwriter.masterNode
+  roccTLNode := TLWidthWidget(16) := TLBuffer.chainNode(1) := mem_fixedwriter.masterNode
 }
 
 
