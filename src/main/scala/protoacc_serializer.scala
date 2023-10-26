@@ -1,7 +1,7 @@
 package protoacc
 
 import Chisel._
-import chisel3.{Printable}
+import chisel3.{Printable, DontCare}
 import freechips.rocketchip.tile._
 import org.chipsalliance.cde.config._
 import freechips.rocketchip.diplomacy._
@@ -54,6 +54,9 @@ with MemoryOpConstants {
   io.mem.s1_kill := false.B
   io.mem.s2_kill := false.B
   io.mem.keep_clock_enabled := true.B
+  io.fpu_resp.ready := true.B
+  io.fpu_req.valid := false.B
+  io.fpu_req.bits := DontCare
 
   val ser_descr_tab = Module(new SerDescriptorTableHandler)
   outer.mem_descr1.module.io.userif <> ser_descr_tab.io.l2helperUser1
